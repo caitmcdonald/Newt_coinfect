@@ -1,4 +1,4 @@
-# Chytridiomycosis (*Bsal-Bd*) coinfection in Eastern newts (*Notophthalmus viridescens*)
+# Chytridiomycosis (*Bsal-Bd*) coinfection in eastern newts (*Notophthalmus viridescens*)
 
 ## This repository contains files related to RNA-sequencing and differential gene expression analyses for McDonald et al. 2020
 
