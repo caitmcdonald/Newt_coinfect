@@ -17,7 +17,7 @@ Skin, spleen, and liver tissue was harvested upon trial completion for RNA-seq.
 #### Sequencing:
 - Illumina NextSeq 500, SE 75-bp
 - SRA:
-- Sample metadata: [nvir_seq_metadata.txt](nvir_seq_metadata.txt)
+- Sample metadata: [nvir_seq_metadata.txt](data/nvir_seq_metadata.txt)
 
 #### Analysis:
 __1. Read trimming (Trimmomatic):__
