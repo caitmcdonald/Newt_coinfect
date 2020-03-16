@@ -1,0 +1,41 @@
+###
+
+# Add additional annotation data to reference transcriptome annotation file provided by Looso et al. 2013 (newt_annotation.2.0.tsv) #
+# Project: Nvir coinfection
+
+###
+
+
+## Get number of isoforms in annotation file
+grep -c '^' newt_annotation.2.0.tsv
+# 78539
+
+## Collapse isoforms to unique hits
+# 1. In text editor, remove '_cx_seqx' from isoform name (save as newt_annot_noisoform.tsv)
+# 2. Retain only unique lines:
+sort newt_annot_noisoform.tsv | uniq > newt_annot_uniq.tsv
+
+## Remove all hits without annotation
+awk -F'\t' '$3!=""' newt_annot_uniq.tsv > newt_annot_allhits.tsv
+
+## Extract only swissprot hits
+grep 'sp|' newt_annot_allhits.tsv > newt_annot_swissprot.tsv
+
+## Clean file so searchable by uniprotKB
+# 1. Open newt_annot_swissprot.tsv in text editor, remove all other database IDs (e.g. gb| ID), split sp annotation into accession and uniprot id, remove 'sp|', remove all '|',  add headers
+# 2. Should end up with file with four columns: gene, sp_gene, sp_accession, uniprot_id
+
+## Once have list of uniprot IDs, convert to UniProtKB format in order to extract annotation info
+# https://www.uniprot.org/uploadlists/
+# 1. Upload list of identifiers ('uniprot_id' column)
+# 2. Convert to UniProtKB
+# 3. On results page, edit columns displayed to add GO id, GO names, gene names, protein names, any other interesting information.
+# 4. Download results
+# 5. Once downloaded, convert ';' to ',', and add headers
+# 6. Run 'nvir_add_annotation.R' to merge annotations back to gene list
+# 7. Because there are multiple isoforms that hit different UniprotKB IDs, collapse the dataframe back such that there is one row per gene
+#		gene A	uniprot1	GO_1
+#		gene A	uniprot2	GO_2  ------>	gene A	uniprot1, uniprot2, uniprot3	GO_1, GO_2, GO_3
+#		gene A	uniprot3	GO_3
+# 7. Complete annotation dataframe: Newt_gene_swissprot_all_annot.txt
+# 8. Only gene ID and GO ID columns for topGO functional enrichment: Newt_GOterms_only_final.txt.
