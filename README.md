@@ -2,6 +2,8 @@
 
 ## This repository contains files related to RNA-sequencing and differential gene expression analyses for McDonald et al. 2020
 
+[![DOI](https://zenodo.org/badge/247601257.svg)](https://zenodo.org/badge/247601257.svg)
+
 #### Overview:
 *Bsal* is an invasive fungal disease of salamanders that is currently spreading to naïve populations. North American salamanders are naïve to *Bsal*, but may have high *Bd* prevalence. To investigate host immune responses under coinfected vs. single infection scenarios, we performed an infection trial and harvested immune-related tissues for differential gene expression analyses.
 
